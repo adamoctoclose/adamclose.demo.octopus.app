@@ -58,7 +58,7 @@ step "create-web-app-service" {
             Octopus.Action.Script.ScriptSource = "Inline"
             OctopusUseBundledTooling = "False"
         }
-        worker_pool_variable = "OctoPetShop.WorkerPool.Azure"
+        worker_pool = "hosted-ubuntu"
 
         container {
             feed = "docker-hub"
