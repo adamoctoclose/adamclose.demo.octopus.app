@@ -95,8 +95,14 @@ step "deploy-web-app-containers" {
             Octopus.Action.KubernetesContainers.SecretValues = "{\"ops-connectionstring\":\"#{OctoPetShop.Database.ConnectionString}\"}"
             Octopus.Action.KubernetesContainers.ServiceNameType = "External"
             Octopus.Action.KubernetesContainers.ServiceType = "ClusterIP"
+            OctopusUseBundledTooling = "False"
         }
         worker_pool_variable = "OctoPetShop.WorkerPool.Azure"
+
+        container {
+            feed = "docker-hub"
+            image = "octopusdeploy/worker-tools:6.1.0-ubuntu.22.04"
+        }
 
         packages "web-app" {
             acquisition_location = "NotAcquired"
