@@ -1,22 +1,3 @@
-step "approve-production-deployment" {
-    condition = "Variable"
-    name = "Approve Production Deployment"
-    properties = {
-        Octopus.Step.ConditionVariableExpression = "#{unless Octopus.Deployment.Trigger.Id}True#{/unless}"
-    }
-
-    action {
-        action_type = "Octopus.Manual"
-        environments = ["production"]
-        is_required = true
-        notes = "Require approval from someone with the appropriate permissions."
-        properties = {
-            Octopus.Action.Manual.BlockConcurrentDeployments = "True"
-            Octopus.Action.Manual.Instructions = "Please add approval notes here."
-            Octopus.Action.RunOnServer = "false"
-        }
-    }
-}
 
 step "create-web-app-service" {
     name = "Create Web App service (Azure discovery)"
